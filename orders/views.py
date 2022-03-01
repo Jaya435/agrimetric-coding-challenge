@@ -13,7 +13,7 @@ class SandwichViewSet(viewsets.ModelViewSet):
     serializer_class = SandwichSerializer
 
 
-class OrderList(viewsets.ModelViewSet):
+class Orders(viewsets.ModelViewSet):
     """
     API endpoint that lists the uncompleted sandwich orders and their schedule.
     """

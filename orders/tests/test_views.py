@@ -112,7 +112,7 @@ class TestSandwichEndpoints:
 
 class TestSandwichOrderEndpoint:
 
-    endpoint = "/api/sandwich-order/"
+    endpoint = "/api/orders/"
 
     def test_list(self, api_client):
         baker.make(Sandwich, _quantity=1)
