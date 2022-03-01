@@ -14,11 +14,11 @@ install: venv requirements/base.txt requirements/dev.txt requirements/lint.txt
 makemigrations: install
 	${PYTHON} manage.py makemigrations
 
-migrate: install
+migrate: makemigrations
 	${PYTHON} manage.py migrate
 
 createsuperuser: migrate
-	${PYTHON} manage.py createsuperuser --email admin@example.com --username admin
+	${PYTHON} manage.py create_superuser
 
 runserver: createsuperuser
 	${PYTHON} manage.py runserver

@@ -11,5 +11,4 @@ class TestSandwichSerializer:
     def test_serialize_model(self):
         sandwich = baker.make(Sandwich)
         serializer = SandwichSerializer(sandwich)
-
         assert serializer.data

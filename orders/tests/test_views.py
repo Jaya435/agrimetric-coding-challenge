@@ -22,7 +22,7 @@ class TestSandwichEndpoints:
         assert len(json.loads(response.content)) == 3
 
     def test_create(self, api_client):
-        sandwich = baker.prepare(Sandwich)
+        sandwich = baker.prepare(Sandwich, order_number=1)
         expected_json = {
             'order_number': sandwich.order_number,
             'type': sandwich.type,
@@ -56,7 +56,7 @@ class TestSandwichEndpoints:
 
     def test_update(self, api_client):
         old_sandwich = baker.make(Sandwich)
-        new_sandwich = baker.prepare(Sandwich)
+        new_sandwich = baker.prepare(Sandwich, order_number=1)
         sandwich_dict = {
             'order_number': new_sandwich.order_number,
             'type': new_sandwich.type,
@@ -108,3 +108,38 @@ class TestSandwichEndpoints:
 
         assert response.status_code == 204
         assert Sandwich.objects.all().count() == 0
+
+
+class TestSandwichOrderEndpoint:
+
+    endpoint = "/api/sandwich-order/"
+
+    def test_list(self, api_client):
+        baker.make(Sandwich, _quantity=1)
+
+        expected_content = [
+            {
+                "sequence": 1,
+                "schedule": "00:00",
+                "type": "Ham sandwich",
+                "task": "Make Sandwich",
+                "order_number": 1,
+                "recipient": "Anon"},
+            {"sequence": 2,
+             "schedule": "02:30",
+             "type": "Ham sandwich",
+             "task": "Serve Sandwich",
+             "order_number": 1,
+             "recipient": "Anon"},
+            {"sequence": 3,
+             "schedule": "03:30",
+             "task": "Take a Break"}
+        ]
+
+        response = api_client().get(
+            self.endpoint
+        )
+
+        assert response.status_code == 200
+        assert len(json.loads(response.content)) == 3
+        assert json.loads(response.content) == expected_content

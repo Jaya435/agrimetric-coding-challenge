@@ -12,3 +12,12 @@ class SandwichSerializer(serializers.ModelSerializer):
             "recipient",
             "completed"
         ]
+
+
+class SandwichListSerializer(serializers.Serializer):
+    sequence = serializers.IntegerField()
+    schedule = serializers.CharField()
+    type = serializers.CharField(required=False)
+    task = serializers.CharField()
+    order_number = serializers.IntegerField(required=False)
+    recipient = serializers.CharField(required=False)

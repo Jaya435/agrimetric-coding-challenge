@@ -6,7 +6,8 @@ from orders import views
 
 
 router = routers.DefaultRouter()
-router.register(r'sandwich', views.SandwichViewSet)
+router.register(r'sandwich', views.SandwichViewSet, 'sandwich')
+router.register(r'sandwich-order', views.OrderList, 'sandwich-order')
 
 urlpatterns = [
     path("api/", include(router.urls)),
