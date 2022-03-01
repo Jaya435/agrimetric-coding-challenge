@@ -2,9 +2,10 @@ from django.db import models
 
 
 class Order(models.Model):
-    order_number = models.IntegerField(default=1)
+    order_number = models.IntegerField(primary_key=True)
+    recipient = models.CharField(max_length=50, default="Anon")
     received_at = models.DateTimeField(auto_now_add=True, blank=True)
-    completed_at = models.DateTimeField(null=True)
+    completed = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
@@ -12,7 +13,12 @@ class Order(models.Model):
 
 class Sandwich(Order):
 
-    MAKE = "Make sandwich"
-    SERVE = "Serve sandwich"
-    TASK_CHOICES = [(MAKE, "Make sandwich"), (SERVE, "Serve sandwich")]
-    task = models.CharField(max_length=25, choices=TASK_CHOICES, default=MAKE)
+    HAM = "Ham sandwich"
+    CHEESE = "Cheese sandwich"
+    TUNA = "Tuna sandwich"
+    TASK_CHOICES = [(HAM, "Ham sandwich"), (CHEESE, "Cheese sandwich"), (TUNA, "Tuna Sandwich")]
+    type = models.CharField(max_length=25, choices=TASK_CHOICES, default=HAM)
+
+    def get_incomplete_orders(self):
+        return self._meta.model.objects.filter(completed=False).order_by('received_at')
+
