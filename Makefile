@@ -24,13 +24,13 @@ runserver: createsuperuser
 	${PYTHON} manage.py runserver
 
 test: install
-	${PYTHON} -m pytest caffe
+	${PYTHON} -m pytest
 
 format: install
 	${PYTHON} -m black .
 
 lint: install
-	${PYTHON} -m flake8 caffe/.
+	${PYTHON} -m flake8
 
 isort: install
 	${PYTHON} -m isort .

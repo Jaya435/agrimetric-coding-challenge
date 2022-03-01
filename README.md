@@ -35,10 +35,6 @@ Create your Python 3 virtual environment and install all requirements
 ```
 make install
 ```
-to activate the venv use:
-```
-make activate
-```
 
 To run a development web server
 ```
@@ -47,11 +43,11 @@ make runserver
 
 To perform code formatting
 ```
-make black
+make format
 ```
 To perform code linting
 ```
-make flake8
+make lint
 ```
 
 Other make commands to aid development are available on the commandline.
