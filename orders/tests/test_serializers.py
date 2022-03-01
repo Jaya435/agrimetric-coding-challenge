@@ -1,8 +1,8 @@
 import pytest
 from model_bakery import baker
-from ..serializers import SandwichSerializer, SandwichListSerializer
 
 from ..models import Sandwich
+from ..serializers import SandwichListSerializer, SandwichSerializer
 
 pytestmark = pytest.mark.django_db
 
@@ -22,9 +22,8 @@ class TestSandwichListSerializer:
             "type": "Ham sandwich",
             "task": "Make Sandwich",
             "order_number": 1,
-            "recipient": "Anon"
+            "recipient": "Anon",
         }
         serializer = SandwichListSerializer(data=expected_data)
         serializer.is_valid()
         assert serializer.data == expected_data
-

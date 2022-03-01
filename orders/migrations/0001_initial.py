@@ -7,21 +7,31 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Sandwich',
+            name="Sandwich",
             fields=[
-                ('order_number', models.AutoField(primary_key=True, serialize=False)),
-                ('recipient', models.CharField(default='Anon', max_length=50)),
-                ('received_at', models.DateTimeField(auto_now_add=True)),
-                ('completed', models.BooleanField(default=False)),
-                ('type', models.CharField(choices=[('Ham sandwich', 'Ham sandwich'), ('Cheese sandwich', 'Cheese sandwich'), ('Tuna sandwich', 'Tuna Sandwich')], default='Ham sandwich', max_length=25)),
+                ("order_number", models.AutoField(primary_key=True, serialize=False)),
+                ("recipient", models.CharField(default="Anon", max_length=50)),
+                ("received_at", models.DateTimeField(auto_now_add=True)),
+                ("completed", models.BooleanField(default=False)),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("Ham sandwich", "Ham sandwich"),
+                            ("Cheese sandwich", "Cheese sandwich"),
+                            ("Tuna sandwich", "Tuna Sandwich"),
+                        ],
+                        default="Ham sandwich",
+                        max_length=25,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

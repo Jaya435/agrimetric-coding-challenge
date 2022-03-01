@@ -16,5 +16,9 @@ class Sandwich(Order):
     HAM = "Ham sandwich"
     CHEESE = "Cheese sandwich"
     TUNA = "Tuna sandwich"
-    TASK_CHOICES = [(HAM, "Ham sandwich"), (CHEESE, "Cheese sandwich"), (TUNA, "Tuna Sandwich")]
+    TASK_CHOICES = [
+        (HAM, "Ham sandwich"),
+        (CHEESE, "Cheese sandwich"),
+        (TUNA, "Tuna Sandwich"),
+    ]
     type = models.CharField(max_length=25, choices=TASK_CHOICES, default=HAM)
